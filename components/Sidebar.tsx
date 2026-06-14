@@ -13,11 +13,13 @@ import {
   Grid, 
   Box, 
   Dna, 
-  Lightbulb 
+  Lightbulb,
+  Activity
 } from "lucide-react";
 
 const links = [
   { href: "/", label: "Home", icon: Home },
+  { href: "/predict", label: "Inference Engine", icon: Activity },
   { href: "/about", label: "About Research", icon: Info },
   { href: "/dataset", label: "Dataset Explorer", icon: Database },
   { href: "/architecture", label: "DL Architecture", icon: Cpu },
@@ -27,7 +29,8 @@ const links = [
   { href: "/heatmaps", label: "Heatmaps", icon: Grid },
   { href: "/structure", label: "Structural Biology", icon: Box },
   { href: "/mutations", label: "Mutation Analysis", icon: Dna },
-  { href: "/insights", label: "Research Insights", icon: Lightbulb },
+  { href: "/research", label: "Research Paper", icon: Lightbulb },
+  { href: "/downloads", label: "Download Center", icon: Database },
 ];
 
 export function Sidebar() {
