@@ -1,5 +1,7 @@
 # AI-Driven Explainable Tuberculosis Protein-Protein Interaction Prediction Platform
 
+![Workflow Diagram](images/workflow_diagram.jpeg)
+
 Research-grade bioinformatics and machine learning platform for predicting **Mycobacterium tuberculosis protein-protein interactions (PPIs)** using sequence features, Siamese CNN-based deep learning, explainable AI, structural analysis, residue hotspot prediction, mutation effect analysis, and interactive visualization.
 
 This project is designed as a complete AI-bioinformatics workflow for **TB protein interaction prediction and structural interpretation**.
