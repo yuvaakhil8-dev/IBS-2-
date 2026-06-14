@@ -45,6 +45,14 @@ export default function ProjectSummaryPage() {
             <GraduationCap className="w-4 h-4 text-lab-mint" /> Grad School App
           </span>
         </div>
+        <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+          <a href="https://ibs-2.vercel.app" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-lab-cyan/20 hover:bg-lab-cyan/30 transition-colors border border-lab-cyan/40 px-5 py-2.5 rounded-lg text-sm text-lab-cyan font-medium">
+            Live Platform Demo
+          </a>
+          <a href="https://github.com/yuvaakhil8-dev/IBS-2-" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-white/10 hover:bg-white/20 transition-colors border border-white/20 px-5 py-2.5 rounded-lg text-sm text-white font-medium">
+            View on GitHub
+          </a>
+        </div>
       </header>
 
       <div className="grid md:grid-cols-2 gap-8">

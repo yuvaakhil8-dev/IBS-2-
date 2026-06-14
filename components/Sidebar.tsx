@@ -18,7 +18,8 @@ import {
   Activity,
   Menu,
   X,
-  Presentation
+  Presentation,
+  Share2
 } from "lucide-react";
 
 const links = [
@@ -36,6 +37,7 @@ const links = [
   { href: "/mutations", label: "Mutation Analysis", icon: Dna },
   { href: "/research", label: "Research Documentation", icon: Lightbulb },
   { href: "/downloads", label: "Download Center", icon: Database },
+  { href: "/share", label: "Share Project", icon: Share2 },
 ];
 
 export function Sidebar() {
