@@ -4,11 +4,22 @@ import { useEffect, useRef, useState } from "react";
 import { Loader2, Maximize2, Layers, Crosshair } from "lucide-react";
 import Script from "next/script";
 
-export function MoleculeScene() {
+// Mapping of common Rv IDs to Uniprot IDs for AlphaFold
+const UNIPROT_MAP: Record<string, string> = {
+  "Rv1908c": "P9WPP1", // KatG
+  "Rv0685": "P9WNK5",
+  "Rv2428": "P9WHE3",
+  "Rv2748c": "P9WKL5",
+};
+
+export function MoleculeScene({ proteinId = "Rv1908c" }: { proteinId?: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const pluginRef = useRef<any>(null);
   const [loading, setLoading] = useState(true);
   const [viewMode, setViewMode] = useState<"cartoon" | "surface" | "ball-and-stick">("cartoon");
+
+  const afId = UNIPROT_MAP[proteinId] || "P9WPP1";
+  const afUrl = `https://alphafold.ebi.ac.uk/files/AF-${afId}-F1-model_v4.cif`;
 
   const initMolstar = () => {
     if (!containerRef.current || pluginRef.current || !(window as any).PDBeMolstarPlugin) return;
@@ -18,7 +29,7 @@ export function MoleculeScene() {
 
     const options = {
       customData: {
-        url: 'https://alphafold.ebi.ac.uk/files/AF-P9WPP1-F1-model_v4.cif',
+        url: afUrl,
         format: 'cif',
       },
       bgColor: { r: 15, g: 23, b: 42 }, // slate-900 to match theme
@@ -40,7 +51,7 @@ export function MoleculeScene() {
     
     pluginRef.current.visual.update({
       customData: {
-        url: 'https://alphafold.ebi.ac.uk/files/AF-P9WPP1-F1-model_v4.cif',
+        url: afUrl,
         format: 'cif',
       },
       visualStyle: mode,
@@ -73,7 +84,7 @@ export function MoleculeScene() {
       {loading && (
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-slate-900 backdrop-blur-sm">
           <Loader2 className="w-8 h-8 text-lab-cyan animate-spin mb-4" />
-          <p className="text-xs text-slate-400">Loading AlphaFold Structure (AF-P9WPP1-F1)...</p>
+          <p className="text-xs text-slate-400">Loading AlphaFold Structure...</p>
         </div>
       )}
 
@@ -83,7 +94,7 @@ export function MoleculeScene() {
       {/* Floating UI Controls */}
       <div className="absolute top-4 left-4 z-20 flex gap-2">
         <span className="bg-black/60 border border-lab-cyan/30 px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-lab-cyan backdrop-blur-md">
-          Rv1908c (KatG)
+          {proteinId} {proteinId === "Rv1908c" && "(KatG)"}
         </span>
       </div>
 

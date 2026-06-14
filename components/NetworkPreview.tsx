@@ -5,7 +5,7 @@ import CytoscapeComponent from "react-cytoscapejs";
 import { Loader2, Maximize2, Search, SlidersHorizontal, Info } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export function NetworkPreview() {
+export function NetworkPreview({ proteinId }: { proteinId?: string }) {
   const [elements, setElements] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [limit, setLimit] = useState(50);
@@ -23,9 +23,12 @@ export function NetworkPreview() {
         const addedNodes = new Set();
         
         // Skip header
-        const rows = lines.slice(1, limit + 1);
+        const rows = lines.slice(1);
+        let count = 0;
         
         rows.forEach(row => {
+          if (!proteinId && count >= limit) return;
+          
           const cols = row.split(",");
           if (cols.length < 11) return;
           
@@ -35,6 +38,10 @@ export function NetworkPreview() {
           
           const cleanA = rawA.replace("83332.", "");
           const cleanB = rawB.replace("83332.", "");
+          
+          if (proteinId && cleanA !== proteinId && cleanB !== proteinId) return;
+          
+          count++;
           
           if (!addedNodes.has(cleanA)) {
             newElements.push({
@@ -82,7 +89,7 @@ export function NetworkPreview() {
     }
     
     loadNetwork();
-  }, [limit]);
+  }, [limit, proteinId]);
 
   const handleNodeClick = (event: any) => {
     const node = event.target;
@@ -172,13 +179,15 @@ export function NetworkPreview() {
       
       {/* Network Controls */}
       <div className="absolute top-4 left-4 z-10 flex gap-2">
-        <button 
-          onClick={() => setLimit(limit === 50 ? 100 : 50)}
-          className="flex items-center gap-2 bg-black/60 border border-lab-cyan/30 px-3 py-1.5 rounded-lg text-xs font-medium text-white hover:bg-lab-cyan/20 transition-colors backdrop-blur-md"
-        >
-          <SlidersHorizontal className="w-4 h-4" />
-          {limit === 50 ? "Show Top 100" : "Show Top 50"}
-        </button>
+        {!proteinId && (
+          <button 
+            onClick={() => setLimit(limit === 50 ? 100 : 50)}
+            className="flex items-center gap-2 bg-black/60 border border-lab-cyan/30 px-3 py-1.5 rounded-lg text-xs font-medium text-white hover:bg-lab-cyan/20 transition-colors backdrop-blur-md"
+          >
+            <SlidersHorizontal className="w-4 h-4" />
+            {limit === 50 ? "Show Top 100" : "Show Top 50"}
+          </button>
+        )}
       </div>
 
       <div className="flex-1 w-full h-full">

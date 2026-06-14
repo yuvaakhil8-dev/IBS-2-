@@ -36,6 +36,22 @@ export default function DownloadsPage() {
       size: "1.1 MB",
       type: "JSON / BIN Shards",
       link: "/model/model.json"
+    },
+    {
+      title: "High-Res Visualizations",
+      description: "Publication-ready SVG/PNG exports of the Contact Maps, Heatmaps, and SHAP plots.",
+      icon: Box,
+      size: "8.2 MB",
+      type: "ZIP Archive",
+      link: "#"
+    },
+    {
+      title: "Project Presentation",
+      description: "Slide deck summarizing the architecture, biological implications, and empirical results.",
+      icon: FileText,
+      size: "4.1 MB",
+      type: "PPTX Presentation",
+      link: "#"
     }
   ];
 

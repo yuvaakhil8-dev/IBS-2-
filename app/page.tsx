@@ -6,7 +6,18 @@ import { Activity, BrainCircuit, Database, Dna, FileText, Network, ShieldCheck, 
 import { ArchitectureRail } from "@/components/ArchitectureRail";
 import { MetricCard } from "@/components/MetricCard";
 import { MoleculeScene } from "@/components/MoleculeScene";
-import { NetworkPreview } from "@/components/NetworkPreview";
+import dynamic from "next/dynamic";
+
+// Dynamically import heavy visualization components to boost Lighthouse performance
+const DynamicNetworkPreview = dynamic(() => import("@/components/NetworkPreview").then(mod => mod.NetworkPreview), {
+  ssr: false,
+  loading: () => <div className="w-full h-full min-h-[400px] flex items-center justify-center bg-slate-900 rounded-xl border border-white/10 text-slate-500 animate-pulse">Loading Network Physics...</div>
+});
+
+const DynamicMoleculeScene = dynamic(() => import("@/components/MoleculeScene").then(mod => mod.MoleculeScene), {
+  ssr: false,
+  loading: () => <div className="w-full h-[400px] flex items-center justify-center bg-slate-900 rounded-xl border border-white/10 text-slate-500 animate-pulse">Loading Structural Viewer...</div>
+});
 
 const modelCards = [
   ["Siamese CNN", "paired sequence learning", "30% fusion"],
@@ -67,7 +78,7 @@ export default function Page() {
             </div>
           </motion.div>
           <motion.div initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} className="glass rounded-lg p-4">
-            <MoleculeScene />
+            <DynamicMoleculeScene />
           </motion.div>
         </section>
 
@@ -111,7 +122,7 @@ export default function Page() {
               <Network className="text-lab-violet" />
               <h2 className="text-2xl font-semibold">Protein Network Visualization</h2>
             </div>
-            <NetworkPreview />
+            <DynamicNetworkPreview />
           </div>
           <div className="glass rounded-lg p-5">
             <div className="mb-4 flex items-center gap-2">
