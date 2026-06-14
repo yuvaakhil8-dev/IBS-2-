@@ -26,8 +26,12 @@ export default function PredictPage() {
     setActiveTab("prediction");
     
     try {
+      // Sanitize sequences: remove FASTA headers, spaces, and newlines
+      const cleanSeqA = seqA.replace(/^>.*$/gm, '').replace(/[^a-zA-Z]/g, '');
+      const cleanSeqB = seqB.replace(/^>.*$/gm, '').replace(/[^a-zA-Z]/g, '');
+      
       // Execute genuine TensorFlow.js inference
-      const prob = await runSiameseInference(seqA, seqB);
+      const prob = await runSiameseInference(cleanSeqA, cleanSeqB);
       setProbability(prob);
       setHasRun(true);
     } catch (e) {
@@ -100,11 +104,11 @@ export default function PredictPage() {
                 </div>
                 <textarea 
                   value={seqA}
-                  onChange={(e) => setSeqA(e.target.value.toUpperCase().replace(/[^ACDEFGHIKLMNPQRSTVWY]/g, ''))}
+                  onChange={(e) => setSeqA(e.target.value)}
                   className="w-full h-32 bg-black/40 border border-lab-cyan/20 rounded-lg p-3 text-xs font-mono text-slate-300 focus:outline-none focus:border-lab-cyan"
                   placeholder="Paste sequence or upload FASTA..."
                 />
-                <div className="text-right text-xs text-slate-500 mt-1">{seqA.length} / 800 AA</div>
+                <div className="text-right text-xs text-slate-500 mt-1">{seqA.replace(/[^a-zA-Z]/g, '').length} / 800 AA</div>
               </div>
               
               <div>
@@ -117,11 +121,11 @@ export default function PredictPage() {
                 </div>
                 <textarea 
                   value={seqB}
-                  onChange={(e) => setSeqB(e.target.value.toUpperCase().replace(/[^ACDEFGHIKLMNPQRSTVWY]/g, ''))}
+                  onChange={(e) => setSeqB(e.target.value)}
                   className="w-full h-32 bg-black/40 border border-lab-cyan/20 rounded-lg p-3 text-xs font-mono text-slate-300 focus:outline-none focus:border-lab-cyan"
                   placeholder="Paste sequence or upload FASTA..."
                 />
-                <div className="text-right text-xs text-slate-500 mt-1">{seqB.length} / 800 AA</div>
+                <div className="text-right text-xs text-slate-500 mt-1">{seqB.replace(/[^a-zA-Z]/g, '').length} / 800 AA</div>
               </div>
 
               <button 
