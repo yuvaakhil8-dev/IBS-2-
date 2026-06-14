@@ -24,7 +24,11 @@ export async function runSiameseInference(seqA: string, seqB: string): Promise<n
   const weightsJson = await response.json();
 
   // Helper to load a specific weight tensor
-  const getWeight = (layerName: string, index: number) => {
+  const getEncoderWeight = (index: number) => {
+    return tf.tensor(weightsJson['shared_protein_encoder'][index]);
+  };
+
+  const getDenseWeight = (layerName: string, index: number) => {
     return tf.tensor(weightsJson[layerName][index]);
   };
 
@@ -36,7 +40,7 @@ export async function runSiameseInference(seqA: string, seqB: string): Promise<n
     outputDim: 24,
     inputLength: MAX_LEN,
     inputShape: [MAX_LEN],
-    weights: [getWeight('embedding', 0)]
+    weights: [getEncoderWeight(0)] // Embedding weights
   }));
 
   encoder.add(tf.layers.conv1d({
@@ -44,7 +48,7 @@ export async function runSiameseInference(seqA: string, seqB: string): Promise<n
     kernelSize: 7,
     activation: 'relu',
     padding: 'valid',
-    weights: [getWeight('conv1d', 0), getWeight('conv1d', 1)]
+    weights: [getEncoderWeight(1), getEncoderWeight(2)] // Conv1D kernel, bias
   }));
 
   encoder.add(tf.layers.maxPooling1d({ poolSize: 2, strides: 2, padding: 'valid' }));
@@ -54,7 +58,7 @@ export async function runSiameseInference(seqA: string, seqB: string): Promise<n
     kernelSize: 5,
     activation: 'relu',
     padding: 'valid',
-    weights: [getWeight('conv1d_1', 0), getWeight('conv1d_1', 1)]
+    weights: [getEncoderWeight(3), getEncoderWeight(4)] // Conv1D_1 kernel, bias
   }));
 
   encoder.add(tf.layers.globalMaxPooling1d({}));
@@ -62,7 +66,7 @@ export async function runSiameseInference(seqA: string, seqB: string): Promise<n
   encoder.add(tf.layers.dense({
     units: 96,
     activation: 'relu',
-    weights: [getWeight('dense', 0), getWeight('dense', 1)]
+    weights: [getEncoderWeight(5), getEncoderWeight(6)] // Dense kernel, bias
   }));
 
   // 2. Encode Sequences
@@ -84,14 +88,14 @@ export async function runSiameseInference(seqA: string, seqB: string): Promise<n
     units: 128,
     activation: 'relu',
     inputShape: [384],
-    weights: [getWeight('dense_1', 0), getWeight('dense_1', 1)]
+    weights: [getDenseWeight('dense_1', 0), getDenseWeight('dense_1', 1)]
   });
 
   const dense2 = tf.layers.dense({
     units: 1,
     activation: 'sigmoid',
     inputShape: [128],
-    weights: [getWeight('dense_2', 0), getWeight('dense_2', 1)]
+    weights: [getDenseWeight('dense_2', 0), getDenseWeight('dense_2', 1)]
   });
 
   const x1 = dense1.apply(concat) as tf.Tensor;
