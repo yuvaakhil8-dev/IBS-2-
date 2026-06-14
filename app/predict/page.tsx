@@ -4,7 +4,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Upload, Activity, Zap, ShieldAlert, Cpu, CheckCircle2, XCircle } from "lucide-react";
 import { runSiameseInference } from "@/lib/inference";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveContainer, Cell } from "recharts";
+import { Tooltip } from "@/components/Tooltip";
 
 export default function PredictPage() {
   const [seqA, setSeqA] = useState("");
@@ -80,7 +81,9 @@ export default function PredictPage() {
           <Activity className="text-lab-violet w-8 h-8" />
         </div>
         <div>
-          <h1 className="text-4xl font-outfit font-bold">Inference Engine</h1>
+          <Tooltip title="Siamese CNN Inference Engine" content="Twin neural networks sharing identical weights to extract symmetric feature embeddings. Computes interaction probabilities entirely in the browser using TensorFlow.js." position="bottom">
+            <h1 className="text-4xl font-outfit font-bold border-b border-dashed border-lab-violet/50 pb-1 inline-block">Inference Engine</h1>
+          </Tooltip>
           <p className="text-slate-400 mt-2">Executing genuine Siamese CNN weights locally via TensorFlow.js.</p>
         </div>
       </header>
@@ -210,7 +213,10 @@ export default function PredictPage() {
               {activeTab === 'interpretation' && (
                 <div className="space-y-4 h-[400px]">
                   <h3 className="text-xl font-semibold flex items-center gap-2">
-                    <Zap className="w-5 h-5 text-lab-mint" /> Feature Importance (SHAP-style)
+                    <Zap className="w-5 h-5 text-lab-mint" /> 
+                    <Tooltip title="SHAP Values" content="SHapley Additive exPlanations. A game-theoretic approach to explain the output of the Siamese CNN. It shows how much each biological feature (like hydrophobicity or charge) contributed to the final prediction score." position="top">
+                      <span className="border-b border-dashed border-white/50 cursor-help">Feature Importance (SHAP-style)</span>
+                    </Tooltip>
                   </h3>
                   {!hasRun ? (
                     <p className="text-slate-400">Prediction execution required to generate interpretability plots.</p>
@@ -219,7 +225,7 @@ export default function PredictPage() {
                       <BarChart data={shapData} layout="vertical" margin={{ left: 40, right: 20 }}>
                         <XAxis type="number" hide />
                         <YAxis dataKey="feature" type="category" width={150} tick={{fill: '#94a3b8'}} />
-                        <Tooltip contentStyle={{backgroundColor: '#0f172a', borderColor: '#334155'}} />
+                        <RechartsTooltip contentStyle={{backgroundColor: '#0f172a', borderColor: '#334155'}} />
                         <Bar dataKey="value" radius={[0, 4, 4, 0]}>
                            {shapData.map((entry, index) => (
                              <Cell key={`cell-${index}`} fill={entry.value > 0 ? '#10b981' : '#ef4444'} />
