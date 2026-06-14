@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(85, 230, 255, 0.15), transparent 30%),
+    radial-gradient(circle at 82% 8%, rgba(159, 122, 234, 0.16), transparent 28%),
+    linear-gradient(135deg, #061016 0%, #081923 52%, #0b111c 100%);
+  color: #e8fbff;
+  letter-spacing: 0;
+}
+
+.neural-grid {
+  background-image:
+    linear-gradient(rgba(85, 230, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(85, 230, 255, 0.08) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.glass {
+  border: 1px solid rgba(160, 225, 255, 0.17);
+  background: rgba(12, 24, 34, 0.72);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(18px);
+}
+
+.scientific-card {
+  border-radius: 8px;
+  border: 1px solid rgba(85, 230, 255, 0.16);
+  background: linear-gradient(180deg, rgba(18, 35, 48, 0.86), rgba(10, 19, 29, 0.86));
+}

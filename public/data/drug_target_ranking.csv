@@ -1,0 +1,17 @@
+protein_id,mean_interaction_score,max_interaction_score,mean_confidence,predicted_partner_count,interaction_burden_rank,confidence_rank,target_importance_score,drug_target_rationale
+83332.Rv0411c,0.732,0.732,0.732,1,0.53125,0.96875,0.7255625000000001,high-confidence candidate with repeated predicted interaction burden
+83332.Rv2939,0.732,0.732,0.732,1,0.53125,0.96875,0.7255625000000001,high-confidence candidate with repeated predicted interaction burden
+83332.Rv2378c,0.698,0.698,0.698,1,0.53125,0.84375,0.6875625,moderate priority candidate
+83332.Rv1347c,0.698,0.698,0.698,1,0.53125,0.84375,0.6875625,moderate priority candidate
+83332.Rv0620,0.58,0.58,0.58,1,0.53125,0.46875,0.5615625,moderate priority candidate
+83332.Rv0993,0.58,0.58,0.58,1,0.53125,0.46875,0.5615625,moderate priority candidate
+83332.Rv1967,0.548,0.548,0.548,1,0.53125,0.34375,0.5250625000000001,moderate priority candidate
+83332.Rv1974,0.548,0.548,0.548,1,0.53125,0.34375,0.5250625000000001,moderate priority candidate
+83332.Rv0889c,0.542,0.542,0.542,1,0.53125,0.21875,0.5080625,moderate priority candidate
+83332.Rv0556,0.542,0.542,0.542,1,0.53125,0.21875,0.5080625,moderate priority candidate
+83332.Rv3456c,0.304,0.304,0.696,1,0.53125,0.71875,0.49716250000000006,moderate priority candidate
+83332.Rv0079,0.304,0.304,0.696,1,0.53125,0.71875,0.49716250000000006,moderate priority candidate
+83332.Rv2799,0.32,0.32,0.6799999999999999,1,0.53125,0.59375,0.4870625,moderate priority candidate
+83332.Rv2591,0.32,0.32,0.6799999999999999,1,0.53125,0.59375,0.4870625,moderate priority candidate
+83332.Rv0100,0.464,0.464,0.536,1,0.53125,0.09375,0.4586625000000001,moderate priority candidate
+83332.Rv2959c,0.464,0.464,0.536,1,0.53125,0.09375,0.4586625000000001,moderate priority candidate

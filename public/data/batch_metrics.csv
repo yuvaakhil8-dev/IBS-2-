@@ -1,0 +1,6 @@
+metric,value
+comparisons,9900.0
+mean_probability,0.6527756798393899
+max_probability,0.9274168587201118
+predicted_interactions,3990.0
+known_dataset_pairs,1854.0
