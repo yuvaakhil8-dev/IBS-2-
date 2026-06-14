@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBS-2: Explainable TB PPI Platform</title>
+    <meta name="description" content="AI-Driven Explainable Tuberculosis Protein-Protein Interaction Prediction and Structural Analysis Platform">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+    </script>
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+    
+    <div class="container">
+        <header class="hero">
+            <h1 class="title">IBS-2 <span class="gradient-text">TB PPI Platform</span></h1>
+            <p class="subtitle">AI-Driven Explainable Tuberculosis Protein-Protein Interaction Prediction & Structural Analysis</p>
+            <div class="badges">
+                <span class="badge">Machine Learning</span>
+                <span class="badge">Bioinformatics</span>
+                <span class="badge">Explainable AI</span>
+            </div>
+        </header>
+
+        <section class="grid-section">
+            <div class="card">
+                <h2>Key Features</h2>
+                <ul>
+                    <li>Tuberculosis-specific PPI prediction</li>
+                    <li>Siamese CNN and classical ML model comparison</li>
+                    <li>Explainable AI with SHAP/LIME interpretations</li>
+                    <li>Residue-level hotspot & interface prediction</li>
+                    <li>AlphaFold/PDB-aware 3D visualization</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2>Model Performance</h2>
+                <div class="stats-grid">
+                    <div class="stat">
+                        <span class="stat-value">0.714</span>
+                        <span class="stat-label">Accuracy</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">0.798</span>
+                        <span class="stat-label">ROC-AUC</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">0.816</span>
+                        <span class="stat-label">PR-AUC</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label" style="font-size: 1.5rem; font-weight:800; font-family:'Outfit'; color: var(--accent-1); margin-bottom: 0.5rem; text-transform:none;">170-dim</span>
+                        <span class="stat-label">Features</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card workflow-section">
+            <h2>System Workflow</h2>
+            <div class="mermaid">
+                flowchart TD
+                    A["STRING PPI Data"] --> B["FASTA Protein Sequences"]
+                    B --> C["Positive and Negative Pair Construction"]
+                    C --> D["Cleaning and Leakage-Free Split"]
+                    D --> E["Feature Engineering"]
+                    E --> F["Siamese CNN / ML Prediction"]
+                    F --> G["Explainable AI"]
+                    G --> H["Residue Hotspot Prediction"]
+                    H --> I["Contact Map Analysis"]
+                    I --> J["3D Structure Visualization"]
+                    J --> K["Mutation Effect Analysis"]
+                    F --> L["100x100 Discovery Explorer"]
+            </div>
+        </section>
+        
+        <footer>
+            <p>Research-grade bioinformatics and machine learning platform for predicting Mycobacterium tuberculosis protein-protein interactions.</p>
+        </footer>
+    </div>
+</body>
+</html>
