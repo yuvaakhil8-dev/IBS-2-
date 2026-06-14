@@ -34,9 +34,9 @@ export default function PredictPage() {
       const prob = await runSiameseInference(cleanSeqA, cleanSeqB);
       setProbability(prob);
       setHasRun(true);
-    } catch (e) {
+    } catch (e: any) {
       console.error(e);
-      alert("Error executing inference model.");
+      alert(`Error executing inference model: ${e.message || String(e)}`);
     } finally {
       setIsPredicting(false);
     }

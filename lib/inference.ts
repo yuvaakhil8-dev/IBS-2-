@@ -35,6 +35,7 @@ export async function runSiameseInference(seqA: string, seqB: string): Promise<n
     inputDim: 21,
     outputDim: 24,
     inputLength: MAX_LEN,
+    inputShape: [MAX_LEN],
     weights: [getWeight('embedding', 0)]
   }));
 
@@ -82,12 +83,14 @@ export async function runSiameseInference(seqA: string, seqB: string): Promise<n
   const dense1 = tf.layers.dense({
     units: 128,
     activation: 'relu',
+    inputShape: [384],
     weights: [getWeight('dense_1', 0), getWeight('dense_1', 1)]
   });
 
   const dense2 = tf.layers.dense({
     units: 1,
     activation: 'sigmoid',
+    inputShape: [128],
     weights: [getWeight('dense_2', 0), getWeight('dense_2', 1)]
   });
 
