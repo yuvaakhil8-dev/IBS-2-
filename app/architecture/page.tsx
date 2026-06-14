@@ -23,19 +23,12 @@ export default function Page() {
             <div className="glass p-8 rounded-xl mb-8">
                 <h2 className="text-2xl font-semibold text-lab-cyan mb-4">Siamese CNN Workflow</h2>
                 <p className="text-slate-300 mb-6">The core of our platform relies on a Siamese Convolutional Neural Network. Both proteins in a pair are passed through identical CNN branches with shared weights, ensuring a fair biological comparison.</p>
-                <div className="bg-black/30 p-6 rounded-lg border border-lab-cyan/20">
-                    <pre className="text-sm text-lab-mint font-mono overflow-x-auto">
-{`Protein A -> CNN Branch -> 128-dim Embedding A
-Protein B -> CNN Branch -> 128-dim Embedding B
-                      |
-                 Concatenate
-                      |
-                 Dense Layer
-                      |
-                   Sigmoid
-                      |
-           Interaction Probability`}
-                    </pre>
+                <div className="bg-black/40 p-2 rounded-xl mb-6">
+                    <img src="/assets/siamese_cnn_architecture.png" alt="Siamese CNN Architecture" className="w-full rounded-lg shadow-glow" />
+                </div>
+                <h3 className="text-xl font-semibold text-white mt-8 mb-4">End-to-End Pipeline</h3>
+                <div className="bg-white/5 p-2 rounded-xl">
+                    <img src="/assets/block_diagram.png" alt="Full Pipeline Workflow" className="w-full rounded-lg" />
                 </div>
             </div>
             <div className="grid gap-6 md:grid-cols-2">
